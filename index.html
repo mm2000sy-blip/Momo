@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SparApp — Ziel: 50.000€</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>SparApp <span id="face">😢</span></h1>
+    <p class="subtitle">Plane, wie du in den nächsten Jahren 50.000 € sparen kannst</p>
+    <button id="toggleTheme">🌙 Dark / Light</button>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="card input-group">
+        <label for="target">Sparziel (€)</label>
+        <input id="target" type="number" value="50000" min="0">
+        <label for="years">Zeitraum (Jahre)</label>
+        <input id="years" type="number" value="4" min="1">
+        <label for="start">Startkapital (€)</label>
+        <input id="start" type="number" value="0" min="0">
+        <label for="rate">Jährlicher Zinssatz (%)</label>
+        <input id="rate" type="number" step="0.01" value="5" min="0">
+      </div>
+
+      <div class="card input-group">
+        <label for="income">Monatseinkommen (€)</label>
+        <input id="income" type="number" value="3000" min="0">
+        <label for="expenses">Monatliche Ausgaben (€)</label>
+        <input id="expenses" type="number" value="2000" min="0">
+        <label for="strategy">Sparstrategie</label>
+        <select id="strategy">
+          <option value="fixed">Fester Betrag / Monat</option>
+          <option value="percent">Prozent vom Einkommen</option>
+          <option value="roundup">Round-up (Kleinsparen)</option>
+        </select>
+
+        <div id="fixed-section" class="strategy-field">
+          <label for="fixed">Monatlicher Betrag (€)</label>
+          <input id="fixed" type="number" placeholder="Empfohlen wird berechnet" min="0">
+        </div>
+
+        <div id="percent-section" class="strategy-field hidden">
+          <label for="percent">% des Einkommens sparen</label>
+          <input id="percent" type="number" value="10" min="0" max="100">
+        </div>
+
+        <div id="roundup-section" class="strategy-field hidden">
+          <p>Berechnet 20% des verbleibenden Geldes nach Ausgaben.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary">
+      <div class="card small">
+        <div>Monatlicher Beitrag</div>
+        <div class="big" id="chosenMonthly">0 €</div>
+      </div>
+      <div class="card small">
+        <div>Prognose Endbetrag</div>
+        <div class="big" id="finalBalance">0 €</div>
+      </div>
+      <div class="card small">
+        <div>Noch zu sparen</div>
+        <div class="big" id="remaining">0 €</div>
+      </div>
+    </section>
+
+    <section class="chart-card card">
+      <h3>Prognose</h3>
+      <canvas id="chart" height="300"></canvas>
+      <div id="tooltip" class="tooltip hidden"></div>
+      <div class="chart-legend">
+        <span id="monthsLeft"></span>
+        <span id="recommendedMonthly"></span>
+      </div>
+      <div class="actions">
+        <button id="downloadCSV">CSV Export</button>
+        <button id="saveLocal">Einstellungen speichern</button>
+      </div>
+    </section>
+
+    <section class="advice card">
+      <h3>Handlungsempfehlungen</h3>
+      <ul>
+        <li>Dauerauftrag direkt nach Gehaltseingang einrichten.</li>
+        <li>Fixe Ausgaben prüfen (Abos, Versicherungen).</li>
+        <li>Für Rendite: Sparpläne / ETF / Tagesgeld prüfen (Risiko beachten).</li>
+        <li>Round-up-Apps nutzen für Kleinsparungen.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>Hinweis: Planungstool — keine Anlageberatung.</small>
+  </footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
